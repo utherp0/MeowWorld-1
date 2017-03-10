@@ -8,14 +8,10 @@ namespace MeowWorld.Controllers
 {
     public class HordeController : Controller
     {
-        private static Dictionary<string, string> _Cats = new Dictionary<string, string>();
-
         [HttpGet("horde/add/{cat}")]
         public string Add(string cat, string sound)
         {
-            string key = String.Format("{0}-{1}", cat, HttpContext.Session.Id);
-
-            _Cats[key] = sound;
+            HttpContext.Session.Set(cat, System.Text.Encoding.Unicode.GetBytes(sound));
 
             return String.Format("{1} added to the horde!\n{0}", HttpContext.Session.Id, cat);
         }
@@ -23,14 +19,16 @@ namespace MeowWorld.Controllers
         [HttpGet("horde/{cat}")]
         public string Get(string cat)
         {
-            string key = String.Format("{0}-{1}", cat, HttpContext.Session.Id);
+            byte[] bytes;
 
-            if (!_Cats.ContainsKey(key))
+            if (!HttpContext.Session.TryGetValue(cat, out bytes))
             {
                 return "Cat not found.";
             }
 
-            return String.Format("{1} says: {2}\n{0}", HttpContext.Session.Id, cat, _Cats[cat]);
+            string sound = System.Text.Encoding.Unicode.GetString(bytes);
+
+            return String.Format("{1} says: {2}\n{0}", HttpContext.Session.Id, cat, sound);
         }
     }
 }
