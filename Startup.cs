@@ -40,7 +40,7 @@ namespace MeowWorld
             //loggerFactory.AddDebug();
 
             //app.UseSession();
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
