@@ -11,7 +11,7 @@ namespace MeowWorld.Controllers
         [HttpGet("cat/{cat}")]
         public string Cat(string cat)
         {
-            switch(cat)
+            switch (cat)
             {
                 case "bill":
                     return "Meow!";
@@ -20,6 +20,12 @@ namespace MeowWorld.Controllers
             }
 
             return String.Empty;
+        }
+
+        [HttpGet("cat/all")]
+        public IActionResult All()
+        {
+            return View();
         }
     }
 }

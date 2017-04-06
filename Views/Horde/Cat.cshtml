@@ -1,0 +1,16 @@
+﻿@model MeowWorld.Models.Cat
+
+<html>
+<body>
+    @if (@Model == null)
+    {
+        <i>Cat not found.</i>
+    }
+    else
+    {
+        <b>@Model.Name says:</b> @Model.Sound
+    }
+    <br /><br />
+    <a href="/horde/all">See All</a> <!-- Add this line. -->
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿@model MeowWorld.Models.Cats
+
+<html>
+<body>
+    The cats are:
+    <ul>
+        @foreach (var cat in Model.Names)
+        {
+            <li><a href="/horde/cat/@cat">@cat</a></li>
+        }
+    </ul>
+    <a href="/horde/add">Add a Cat to the Horde!</a> <!-- Add this line. -->
+</body>
+</html>

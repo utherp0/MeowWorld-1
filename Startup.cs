@@ -30,6 +30,7 @@ namespace MeowWorld
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

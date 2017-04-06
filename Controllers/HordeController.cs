@@ -8,7 +8,7 @@ namespace MeowWorld.Controllers
 {
     public class HordeController : Controller
     {
-        private Dictionary<string, string> _Cats = new Dictionary<string, string>();
+        private static Dictionary<string, string> _Cats = new Dictionary<string, string>();
 
         [HttpPost("horde/{cat}")]
         public string Post(string cat, [FromBody]string sound)
@@ -53,6 +53,47 @@ namespace MeowWorld.Controllers
             _Cats.Remove(cat);
 
             return "Cat deleted.";
+        }
+
+        [HttpGet("horde/all")]
+        public IActionResult All()
+        {
+            var cats = new Models.Cats();
+
+            cats.Names = _Cats.Keys.ToArray();
+
+            return View(cats);
+        }
+
+        [HttpGet("horde/cat/{cat}")]
+        public IActionResult Cat(string cat)
+        {
+            Models.Cat model = null;
+
+            if (_Cats.ContainsKey(cat))
+            {
+                model = new Models.Cat
+                {
+                    Name = cat,
+                    Sound = _Cats[cat],
+                };
+            }
+
+            return View(model);
+        }
+
+        [HttpGet("horde/add")]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost("horde/add")]
+        public IActionResult Add(string name, string sound)
+        {
+            _Cats[name] = sound;
+
+            return Redirect("/horde/all");
         }
     }
 }
