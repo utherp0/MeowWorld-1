@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>AJAX and JS Test Page</title>
+  <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <script>
+
+    function doCat(catID)
+    {
+      $.ajax(
+      {
+        url: '/cat/' + catID,
+        dataType: 'xml',
+      }).done(function(text)
+      {
+        document.getElementById('output').value = text;
+      });
+    }
+
+  </script>
+</head>
+
+<body>
+<input type="text" onFocus="this.blur();" size=20 id="output"/>
+<input type="button" value="Test AJAX" onClick="doCat('winnie');"/>
+</body>
+
+</html>
