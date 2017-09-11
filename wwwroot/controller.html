@@ -7,6 +7,23 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly-additions.min.css">
 
+  <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <script>
+
+    function catLookup(catID)
+    {
+      $.ajax(
+      {
+        url: '/cat/'+catID,
+        dataType: 'text',
+      }).done(function(text)
+      {
+        document.getElementById('output').value = text;
+      });
+    }
+
+  </script>
 </head>
 
 <body>
@@ -52,6 +69,7 @@
 Enter the webservice url (root as above)/cat/all to get all the cats in the static version.<br/>
 Enter the webservice url (root as above)/cat/{<i>name</i>} to get the static noise for the cat via webservice.<br/>
 Click the 'Play with the Horde' to create and add cats to your own horde.<br/>
+Alternatively, enter a cat name here <input type='text' size='10' id='catName'/> and click <input type='button' value='Here' onClick="this.doCat(document.getElementById('catName').value);"/> to see output <input type='text' size='25' id='output' onFocus='this.blur()'/><br/>
 </div>
 <div width="100%" align="right" valign="middle">
 <img src="images/openshift.png" width="125px">&nbsp;&nbsp;&nbsp;<img src="images/aspnet.png" width="125">
