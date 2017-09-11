@@ -13,10 +13,18 @@ namespace MeowWorld.Controllers
         {
             switch (cat)
             {
-                case "bill":
-                    return "Meow!";
-                case "steve":
-                    return "Purr.";
+                case "winnie":
+                    return "Meow! Hiss! Meow!";
+                case "molly":
+                    return "Silent Purr. Silent Kill.";
+                case "dexter":
+                    return "Meow. Barf. Meow.";
+                case "kali":
+                    return "Meow. Meow. Meow. Hiss. Bite. Meow.";
+                case "jessie":
+                    return "Pounce. Purr. Pounce. Purr.";
+                case "murphy":
+                    return "Nom nom nom nom nom nom nom nom.";
             }
 
             return String.Empty;
