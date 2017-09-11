@@ -10,7 +10,7 @@
       $.ajax(
       {
         url: '/cat/' + catID,
-        dataType: 'xml',
+        dataType: 'text',
       }).done(function(text)
       {
         document.getElementById('output').value = text;
