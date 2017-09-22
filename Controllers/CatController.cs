@@ -35,5 +35,12 @@ namespace MeowWorld.Controllers
         {
             return View();
         }
+
+        [HttpGet("cat/version")]
+        public string Version()
+        {
+            return "Version 1.0";
+        }
+
     }
 }
